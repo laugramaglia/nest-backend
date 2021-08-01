@@ -26,6 +26,6 @@ export class AuthService {
     getUser(headerToken: any){
         const beared = headerToken.substr(headerToken.indexOf(' ')+1)
         const User =  this.jwtService.decode(beared)
-        return {"data": User}
+        return User
     }
 }
