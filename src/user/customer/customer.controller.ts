@@ -5,6 +5,8 @@ import { RoleType } from '../auth/role-type/role-type.enum'
 import { CustomerInterface } from './customer.interface'
 import { CustomerService } from './customer.service'
 
+
+
 @Controller('customer')
 export class CustomerController {
     constructor(private customerService: CustomerService){}
@@ -30,7 +32,7 @@ export class CustomerController {
     @UseGuards(JwtAuthGuards)
     @Put('update/only/:id')
     async updateById(@Param('id') par, @Body('prop') property, @Body('value') valueP): Promise<CustomerInterface | Object>{
-        if(property == 'type') return {messaje: 'Need to be a Master user'}
+        if(property == 'type') return {message: 'Need to be a Master user'}
         return this.customerService.updateById(par, property, valueP)
     }
 }
