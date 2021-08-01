@@ -7,10 +7,10 @@ import { CustomerInterface } from './customer.interface';
 export class Customer extends Document implements CustomerInterface{
 
   @Prop()
-  name: string;
+  name: string
 
   @Prop({required: true})
-  email: String
+  email: string
 
   @Prop()
   user: string

@@ -1,7 +1,5 @@
 import { Controller, Get, Post, Req, Param, Put, Body, UseGuards } from '@nestjs/common'
 import { JwtAuthGuards } from '../auth/jwt-auth.guards'
-import { Roles } from '../auth/role-type/role-type.decorator'
-import { RoleType } from '../auth/role-type/role-type.enum'
 import { CustomerInterface } from './customer.interface'
 import { CustomerService } from './customer.service'
 
@@ -12,8 +10,8 @@ export class CustomerController {
     constructor(private customerService: CustomerService){}
 
     // api request
-    @UseGuards(JwtAuthGuards)
-    @Roles(RoleType.Admin, RoleType.Master)
+    // @UseGuards(JwtAuthGuards)
+    // @Roles(RoleType.Admin, RoleType.Master)
     @Post('new')
     async newCustomer(@Req() req): Promise<CustomerInterface>{
         return this.customerService.newCustomer(req.body)

@@ -10,15 +10,12 @@ export class CustomerService {
     constructor( @InjectModel(Customer.name) private customerModal: Model<Customer>){}
 
     async newCustomer(customer: CustomerInterface): Promise<CustomerInterface> {
-        const CUSTOMER = new this.customerModal(customer)
-        const saltOrRounds = 10
-        const salt = await bcrypt.genSalt(saltOrRounds, function(err, salt){
-             bcrypt.hash(CUSTOMER.pass, salt, function(hash){
-                console.log(hash)
-            })
-        })
-        console.log(salt)
-        return CUSTOMER.save()
+        let Customer = new this.customerModal(customer)
+        const saltOrRounds = await bcrypt.genSalt(10)
+       let hash = await bcrypt.hash(Customer.pass, saltOrRounds)
+       Customer.pass = hash
+        
+        return Customer.save()
     }
 
     async getAll(): Promise<CustomerInterface[]> {
