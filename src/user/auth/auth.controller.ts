@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common'
+import { Controller, Get, Headers, Post, Request, UseGuards } from '@nestjs/common'
 import { Roles } from './role-type/role-type.decorator'
 import { RoleType } from './role-type/role-type.enum'
 import { RolesGuard } from './role-type/role-type.guards'
@@ -19,10 +19,10 @@ export class AuthController {
 
 
   @UseGuards(JwtAuthGuards, RolesGuard)
-  @Get('protected') 
-  @Roles(RoleType.Master)
-  getSome(): any{
-    return {status: 'Loged-in'}
+  @Get('me') 
+  @Roles(RoleType.Customer)
+  getSome(@Headers() headers): any{
+    return this.authService.getUser(headers.authorization)
   }
  
 }

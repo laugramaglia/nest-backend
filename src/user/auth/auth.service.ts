@@ -22,4 +22,10 @@ export class AuthService {
             access_token: this.jwtService.sign(payload)
         }
     }
+
+    getUser(headerToken: any){
+        const beared = headerToken.substr(headerToken.indexOf(' ')+1)
+        const User =  this.jwtService.decode(beared)
+        return User
+    }
 }
