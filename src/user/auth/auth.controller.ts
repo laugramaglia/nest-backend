@@ -23,5 +23,7 @@ export class AuthController {
   getSome(@Headers() headers): any{
     return this.authService.getUser(headers.authorization)
   }
+  // @UseGuards(RolesGuard)
+  // @Roles(RoleType.Customer)
  
 }
