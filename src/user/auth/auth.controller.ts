@@ -18,9 +18,8 @@ export class AuthController {
   }
 
 
-  @UseGuards(JwtAuthGuards, RolesGuard)
+  @UseGuards(JwtAuthGuards)
   @Get('me') 
-  @Roles(RoleType.Customer)
   getSome(@Headers() headers): any{
     return this.authService.getUser(headers.authorization)
   }
