@@ -1,5 +1,5 @@
 import { UserInterface } from '../user.interface'
 
-export interface CustomerInterface extends UserInterface{
+export interface UsersInterface extends UserInterface{
     coin: Number;
 }
