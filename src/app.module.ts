@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
-import { CustomerModule } from './user/users/users'
+import { UsersModule } from './user/users/users'
 import { AuthModule } from './user/auth/auth.module'
 import { ConfigModule } from '@nestjs/config'
 import { ServeStaticModule } from '@nestjs/serve-static'
@@ -17,7 +17,7 @@ import { join } from 'path'
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
     }),
-    CustomerModule,
+    UsersModule,
     AuthModule
   ],
   providers:[
