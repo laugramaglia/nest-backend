@@ -19,10 +19,12 @@ export class Users extends Document implements UsersInterface{
   pass: string
 
   @Prop()
-  coin: Number
+  project: string
 
-  @Prop({enum: RoleType, default: RoleType.employee})
+  @Prop({enum: RoleType, default: RoleType.Employee})
   type: RoleType
+
+
 }
 
 export const UsersSchema = SchemaFactory.createForClass(Users);
