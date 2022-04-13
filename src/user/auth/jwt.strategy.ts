@@ -6,7 +6,7 @@ import { UsersService } from "../users/users.service"
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy){
-    constructor( private customerService: UsersService ){
+    constructor( private usersService: UsersService ){
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
@@ -14,7 +14,7 @@ export class JwtStrategy extends PassportStrategy(Strategy){
         })
     }
     async validate(payload: any){
-        let user = await this.customerService.getById(payload.sub)
+        let user = await this.usersService.getById(payload.sub)
         return { user }        
     }
 }
